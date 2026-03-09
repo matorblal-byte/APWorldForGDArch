@@ -7,7 +7,7 @@
     - Linux users must use Proton.
     - macOS users must use Wine/Whisky, Parallels or CrossOver, as the mod does not support the native version. Sorry!
     - Android is not supported.
-    - iOS is not supported, as Geode does not support iOS.
+    - iOS is not supported.
 - [Geode for Windows](https://geode-sdk.org/install/)
 - Visual C++ Runtime (can be installed through the Geode installer)
 - [ArchipelagoGD](https://github.com/Tiago1257/ArchipelagoGD) (read the instructions before downloading!)
@@ -56,5 +56,6 @@ Due to the nature of ArchipelagoGD, some mods may be incompatible with it. Altho
 - Backups by HJfod
 - Overcharged Main Menu by Weebify
 - Globed by dank_meme (can probably work, but can break some things and can be used to completely break progression)
+
 
 Mods that are **fully incompatible** have been configured to not load along with ArchipelagoGD.
