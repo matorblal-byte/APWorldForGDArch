@@ -10,7 +10,7 @@
     - iOS is not supported.
 - [Geode for Windows](https://geode-sdk.org/install/)
 - Visual C++ Runtime (can be installed through the Geode installer)
-- [ArchipelagoGD](https://github.com/Tiago1257/ArchipelagoGD) (read the instructions before downloading!)
+- [ArchipelagoGD](https://github.com/matorblal-byte/ArchipelagoGD2) (read the instructions before downloading!)
 
 ## Instructions
 
@@ -59,3 +59,4 @@ Due to the nature of ArchipelagoGD, some mods may be incompatible with it. Altho
 
 
 Mods that are **fully incompatible** have been configured to not load along with ArchipelagoGD.
+
