@@ -40,12 +40,13 @@ ultimate_locations = {
     "Ultimate Deadlocked": 29 + gd_base_id
 }
 
-# unused until MoreGames is ported to 2.206
+# unused until MoreGames is ported to 2.2081 (probably wont be so ill just not use this)
 spinoff_locations = {
-    "The Seven Seas": 29 + gd_base_id,
-    "Viking Arena": 30 + gd_base_id,
-    "Airborne Robots": 31 + gd_base_id,
-    "Press Start": 32 + gd_base_id,
-    "Nock Em": 33 + gd_base_id,
-    "Power Trip": 34 + gd_base_id,
+    "The Seven Seas": 30 + gd_base_id,
+    "Viking Arena": 31 + gd_base_id,
+    "Airborne Robots": 32 + gd_base_id,
+    "Press Start": 33 + gd_base_id,
+    "Nock Em": 34 + gd_base_id,
+    "Power Trip": 35 + gd_base_id,
+
 }
