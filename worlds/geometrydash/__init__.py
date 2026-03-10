@@ -38,11 +38,10 @@ class GDWorld(World):
     def create_items(self):
         item_pool: List[GDItem] = []
         for item in item_table:
-            if item == "100 Mana Orbs" or "Secret Coin":
+            if item == "100 Mana Orbs" or item == "Secret Coin":
                 item_pool.append(self.create_item(item, ItemClassification.useful))
             else:
                 item_pool.append(self.create_item(item, ItemClassification.progression))
-            break
 
         self.multiworld.itempool += item_pool
 
