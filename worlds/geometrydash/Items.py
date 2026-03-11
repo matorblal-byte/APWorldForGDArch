@@ -11,7 +11,7 @@ item_table = {
     "Polargeist: Unlock": 2 + gd_base_id,
     "Dry Out: Unlock": 3 + gd_base_id,
     "Base After Base: Unlock": 4 + gd_base_id,
-    "Can't Let Go: Unlock": 5 + gd_base_id,
+    "Cant Let Go: Unlock": 5 + gd_base_id,
     "Jumper: Unlock": 6 + gd_base_id,
     "Time Machine: Unlock": 7 + gd_base_id,
     "Cycles: Unlock": 8 + gd_base_id,

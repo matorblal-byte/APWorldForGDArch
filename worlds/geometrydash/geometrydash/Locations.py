@@ -11,7 +11,7 @@ location_table = {
     "Polargeist": 3 + gd_base_id,
     "Dry Out": 4 + gd_base_id,
     "Base After Base": 5 + gd_base_id,
-    "Can't Let Go": 6 + gd_base_id,
+    "Cant Let Go": 6 + gd_base_id,
     "Jumper": 7 + gd_base_id,
     "Time Machine": 8 + gd_base_id,
     "Cycles": 9 + gd_base_id,
