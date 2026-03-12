@@ -75,6 +75,7 @@ class GDWorld(World):
                     if self.options.ultimate:
                         levelid = math.randint(1, len(location_table) + len(ultimate_locations))
             startinglevels.append(location_table[location_table.keys()[levelid]])
+            print(f"Filled level: {level}")
         return {
             "startinglevels": startinglevels,
             "start_levels": self.options.start_levels.value,
