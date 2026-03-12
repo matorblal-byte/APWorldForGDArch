@@ -7,7 +7,7 @@ from .Regions import region_data_table
 from .Rules import set_rules
 from BaseClasses import Tutorial, ItemClassification, Region
 from worlds.AutoWorld import World, WebWorld
-
+import math
 class GDWebWorld(WebWorld):
     tutorials = [Tutorial(
         "Multiworld Setup Guide",
@@ -62,7 +62,21 @@ class GDWorld(World):
         set_rules(self)
 
     def fill_slot_data(self):
+        startinglevels = []
+        for i in range(self.options.start_levels.value):
+            levelid = math.randint(1, len(location_table))
+            level = location_table[location_table.keys()[levelid]]
+            if self.options.ultimate:
+                levelid = math.randint(1, len(location_table) + len(ultimate_locations))
+            if level in startinglevels:
+                while level in startinglevels:
+                    levelid = math.randint(1, len(location_table))
+                    level = location_table[location_table.keys()[levelid]]
+                    if self.options.ultimate:
+                        levelid = math.randint(1, len(location_table) + len(ultimate_locations))
+            startinglevels.append(location_table[location_table.keys()[levelid]])
         return {
+            "startinglevels": startinglevels,
             "start_levels": self.options.start_levels.value,
             "ultimate": self.options.ultimate.value,
             # "spinoff": self.options.spinoff.value,
