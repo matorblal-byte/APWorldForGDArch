@@ -65,15 +65,18 @@ class GDWorld(World):
         startinglevels = []
         for i in range(self.options.start_levels.value):
             levelid = random.randint(1, len(location_table))
-            level = location_table[levelid]
+            level = [levelName for levelName, value in location_table.items() if value == levelid + 130820130]
             if self.options.ultimate:
                 levelid = random.randint(1, len(location_table) + len(ultimate_locations))
+                level = [levelName for levelName, value in location_table.items() or ultimate_locations.items() if value == levelid + 130820130]
             if level in startinglevels:
                 while level in startinglevels:
-                    levelid = random.randint(1, len(location_table))
-                    level = location_table[levelid]
                     if self.options.ultimate:
                         levelid = random.randint(1, len(location_table) + len(ultimate_locations))
+                        level = [levelName for levelName, value in location_table.items() or ultimate_locations.items() if value == levelid + 130820130]
+                    else:
+                        levelid = random.randint(1, len(location_table))
+                        level = [levelName for levelName, value in location_table.items() if value == levelid + 130820130]
             startinglevels.append(level)
             print(f"Filled level: {level}")
         return {
