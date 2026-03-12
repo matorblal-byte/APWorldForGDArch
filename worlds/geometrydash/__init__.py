@@ -62,28 +62,21 @@ class GDWorld(World):
         set_rules(self)
 
     def fill_slot_data(self):
-        startinglevels = []
-        for i in range(self.options.start_levels.value):
-            levelid = random.randint(1, len(location_table))
-            level = next(levelName for levelName, value in location_table.items() if value == levelid + 130820130)
-            if self.options.ultimate:
-                levelid = random.randint(1, len(location_table) + len(ultimate_locations))
-                level = next(levelName for levelName, value in {**location_table, **ultimate_locations}.items() if value == levelid + 130820130)
-            if level in startinglevels:
-                while level in startinglevels:
-                    if self.options.ultimate:
-                        levelid = random.randint(1, len(location_table) + len(ultimate_locations))
-                        level = next(levelName for levelName, value in {**location_table, **ultimate_locations}.items() if value == levelid + 130820130)
-                    else:
-                        levelid = random.randint(1, len(location_table))
-                        level = next(levelName for levelName, value in location_table.items() if value == levelid + 130820130)
+       startinglevels = []
+       all_levels = list(location_table.keys())
+       if self.options.ultimate:
+            all_levels += list(ultimate_locations.keys())
+       for _ in range(self.options.start_levels.value):
+            level = random.choice(all_levels)
+            while level in startinglevels:
+                level = random.choice(all_levels)
             startinglevels.append(level)
             print(f"Filled level: {level}")
-        return {
-            "startinglevels": startinglevels,
-            "start_levels": self.options.start_levels.value,
-            "ultimate": self.options.ultimate.value,
-            # "spinoff": self.options.spinoff.value,
-            "death_link": self.options.death_link.value,
-            "death_link_amnesty": self.options.death_link_amnesty.value
-        }
+
+       return {
+        "startinglevels": startinglevels,
+        "start_levels": self.options.start_levels.value,
+        "ultimate": self.options.ultimate.value,
+        "death_link": self.options.death_link.value,
+        "death_link_amnesty": self.options.death_link_amnesty.value
+            }

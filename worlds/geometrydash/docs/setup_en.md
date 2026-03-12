@@ -25,7 +25,7 @@
 
 3. Install the mod. There are 2 ways to do this:
     - (Recommended) Search for **ArchipelagoGD** in the Geode Index and download it.
-    - If the mod isn't available on the index, download the mod from the [GitHub releases](https://github.com/Tiago1257/ArchipelagoGD/releases/latest) (you need `1257plays.archipelagogd.geode`) and copy it to `geode/mods` in your game files.
+    - If the mod isn't available on the index, download the mod from the [GitHub releases](https://github.com/matorblal-byte/ArchipelagoGD/releases/latest) (you need `1257plays.archipelagogd.geode`) and copy it to `geode/mods` in your game files.
 
 4. Restart your game. If you see the Archipelago button on the top right corner of your main menu, you're good to go!
 
@@ -37,7 +37,7 @@
 
 3. Click the `Connect` button on the bottom of the popup. You should see another confirmation popup with the info you inserted.
 
-4. Your game will now restart in Archipelago mode and connect to the MultiWorld. You may now start playing!
+4. Your game will now be in Archipelago mode and connect to the MultiWorld. You may now start playing!
 
 - If you're unsure if you're connected, click the Archipelago button again and it will show information about the world you're currently on.
 - The game will open on a fresh save file. Don't worry, your original save is intact.
