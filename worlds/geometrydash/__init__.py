@@ -1,3 +1,5 @@
+import os
+import json
 from typing import List
 
 from .Options import GDOptions
@@ -64,11 +66,12 @@ class GDWorld(World):
     def fill_slot_data(self):
        startinglevels = ""
        all_levels = list(location_table.items())
-       if self.options.ultimate:
+       if self.options.ultimate.value == False:
             all_levels += list(ultimate_locations.items())
        for _ in range(self.options.start_levels.value):
             levelNum = random.randint(0, len(all_levels) - 1)
-            startinglevels += all_levels[levelNum][0] + " "
+            startinglevels += str(levelNum) + " "
+            print(startinglevels)
        return {
         "startinglevels": startinglevels,
         "start_levels": self.options.start_levels.value,
