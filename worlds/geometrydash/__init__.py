@@ -68,7 +68,7 @@ class GDWorld(World):
             all_levels += list(ultimate_locations.items())
        for i in range(self.options.start_levels.value):
             level = random.choice(list(all_levels))
-            while (level[1] - 130820130 - 1) in startinglevels():
+            while (level[1] - 130820130 - 1) in startinglevels:
                 level = random.choice(list(all_levels))
             key, value = level
             levelVal = value - 130820130 - 1 # minus one because c++ starts at 0
