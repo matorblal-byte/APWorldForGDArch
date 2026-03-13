@@ -62,16 +62,18 @@ class GDWorld(World):
         set_rules(self)
 
     def fill_slot_data(self):
-       startinglevels = []
+       startinglevels = {}
        all_levels = list(location_table.keys())
        if self.options.ultimate:
             all_levels += list(ultimate_locations.keys())
-       for _ in range(self.options.start_levels.value):
+       for i in range(self.options.start_levels.value):
             level = random.choice(all_levels)
             while level in startinglevels:
                 level = random.choice(all_levels)
-            startinglevels.append(level)
-            print(f"Filled level: {level}")
+            key, value = level
+            levelVal = value - 130820130 - 1 # minus one because c++ starts at 0
+            startinglevels[i - 1] = levelVal
+            print(f"Filled level: {key} with value {levelVal}")
 
        return {
         "startinglevels": startinglevels,
