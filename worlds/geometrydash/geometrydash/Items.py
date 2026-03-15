@@ -39,6 +39,6 @@ item_table = {
     #"Robot Portal": 30 + gd_base_id,
     #"Spider Portal": 31 + gd_base_id,
     #"Swing Portal": 32 + gd_base_id, 
-    #"100 Mana Orbs": 33 + gd_base_id,
+    "100 Mana Orbs": 33 + gd_base_id,
     # "Secret Coin": 34 + gd_base_id,
 }

@@ -33,17 +33,36 @@ class GDWorld(World):
 
     item_name_to_id = item_table
     location_name_to_id = location_table
+    gd_base_id = 130820130
 
     def create_item(self, name: str, classification: ItemClassification) -> GDItem:
         return GDItem(name, classification, item_table[name], self.player)
     
     def create_items(self):
+        global startinglevels
+        startinglevels = ""
+        startinglevelslist = []
+        all_levels = list(location_table.items())
+        if self.options.ultimate.value == True:
+            all_levels += list(ultimate_locations.items())
+        for _ in range(self.options.start_levels.value):
+            levelNum = random.randint(0, len(all_levels) - 1)
+            startinglevels += str(levelNum) + " "
+            for key, value in item_table.items():
+                if value == levelNum + self.gd_base_id:
+                    level = key
+            startinglevelslist.append(level)
+            print(startinglevels)
         item_pool: List[GDItem] = []
         for item in item_table:
+            if item in startinglevelslist:
+                item_pool.append(self.create_item("100 Mana Orbs", ItemClassification.useful)) # filler for rn
+                continue
             if item == "100 Mana Orbs" or item == "Secret Coin":
-                item_pool.append(self.create_item(item, ItemClassification.useful))
+                continue # temp
+                # item_pool.append(self.create_item(item, ItemClassification.useful))
             else:
-                item_pool.append(self.create_item(item, ItemClassification.progression))
+                item_pool.append(self.create_item(item, ItemClassification.progression)) # comment oiut the above code ofr now
 
         self.multiworld.itempool += item_pool
 
@@ -64,14 +83,6 @@ class GDWorld(World):
         set_rules(self)
 
     def fill_slot_data(self):
-       startinglevels = ""
-       all_levels = list(location_table.items())
-       if self.options.ultimate.value == False:
-            all_levels += list(ultimate_locations.items())
-       for _ in range(self.options.start_levels.value):
-            levelNum = random.randint(0, len(all_levels) - 1)
-            startinglevels += str(levelNum) + " "
-            print(startinglevels)
        return {
         "startinglevels": startinglevels,
         "start_levels": self.options.start_levels.value,
