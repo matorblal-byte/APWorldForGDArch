@@ -51,6 +51,12 @@ class GDWorld(World):
             for key, value in item_table.items():
                 if value == levelNum + self.gd_base_id:
                     level = key
+                while key in startinglevelslist:
+                    levelNum = random.randint(0, len(all_levels) - 1)
+                    startinglevels += str(levelNum) + " "
+                    for key, value in item_table.items():
+                        if value == levelNum + self.gd_base_id:
+                            level = key
             startinglevelslist.append(level)
             print(startinglevels)
         item_pool: List[GDItem] = []
