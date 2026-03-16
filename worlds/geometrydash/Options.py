@@ -26,6 +26,18 @@ class CoinLocks(Toggle):
     display_name = "Coin Locks"
     default = False
 
+class Modifiers(Toggle):
+    """Adds modifers to when you're playing a level."""
+    display_name = "Modifers"
+    default = True
+
+class Speed(Range):
+    """Speed up a level in the range (Weighted based on diffculty)"""
+    display_name = "Speed"
+    range_start = 75
+    range_end = 250
+    default = 100
+
 # spinoff disabled as it depends on MoreGames by BitZ and the mod hasn't been ported to 2.206 yet. DO NOT ENABLE
 
 # class Spinoff(Toggle):
@@ -40,3 +52,5 @@ class GDOptions(PerGameCommonOptions):
     # spinoff: Spinoff
     death_link: DeathLink
     death_link_amnesty: DeathAmount
+    modifiers: Modifiers
+    speed: Speed

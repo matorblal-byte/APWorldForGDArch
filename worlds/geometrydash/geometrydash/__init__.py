@@ -94,5 +94,7 @@ class GDWorld(World):
         "start_levels": self.options.start_levels.value,
         "ultimate": self.options.ultimate.value,
         "death_link": self.options.death_link.value,
-        "death_link_amnesty": self.options.death_link_amnesty.value
+        "death_link_amnesty": self.options.death_link_amnesty.value,
+        "modifiers": self.options.modifiers.value,
+        "speed": self.options.speed.value
             }
