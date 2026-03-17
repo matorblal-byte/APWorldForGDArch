@@ -42,6 +42,7 @@ class GDWorld(World):
         global startinglevels
         startinglevels = ""
         startinglevelslist = []
+        key = ""
         all_levels = list(location_table.items())
         if self.options.ultimate.value == True:
             all_levels += list(ultimate_locations.items())
