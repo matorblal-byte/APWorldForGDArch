@@ -25,14 +25,9 @@ class CoinLocks(Toggle):
     """Enables the vanilla coin locks for Clubstep, Theory of Everything 2 and Deadlocked."""
     display_name = "Coin Locks"
     default = False
-
-class Modifiers(Toggle):
-    """Adds modifers to when you're playing a level."""
-    display_name = "Modifers"
-    default = True
-
+    
 class Speed(Range):
-    """Speed up a level in the range (Weighted based on diffculty)"""
+    """Speed up a level in the range (this is a multiplier - 125 is 1.25x speed )(Weighted based on diffculty)"""
     display_name = "Speed"
     range_start = 75
     range_end = 250
@@ -52,5 +47,4 @@ class GDOptions(PerGameCommonOptions):
     # spinoff: Spinoff
     death_link: DeathLink
     death_link_amnesty: DeathAmount
-    modifiers: Modifiers
     speed: Speed
