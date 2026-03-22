@@ -25,7 +25,7 @@ class CoinLocks(Toggle):
     """Enables the vanilla coin locks for Clubstep, Theory of Everything 2 and Deadlocked."""
     display_name = "Coin Locks"
     default = False
-    
+
 class Speed(Range):
     """Speed up a level in the range (this is a multiplier - 125 is 1.25x speed )(Weighted based on diffculty)"""
     display_name = "Speed"
