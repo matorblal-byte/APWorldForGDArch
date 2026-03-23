@@ -4,7 +4,7 @@ from typing import List
 
 from .Options import GDOptions
 from .Items import item_table, GDItem
-from .Locations import location_table, ultimate_locations, GDLocation
+from .Locations import location_table, ultimate_locations, GDLocation, coins
 from .Regions import region_data_table
 from .Rules import set_rules
 from BaseClasses import Tutorial, ItemClassification, Region
@@ -65,12 +65,18 @@ class GDWorld(World):
             if item in startinglevelslist:
                 item_pool.append(self.create_item("100 Mana Orbs", ItemClassification.useful)) # filler for rn
                 continue
-            if item == "100 Mana Orbs" or item == "Secret Coin":
-                continue # temp
-                # item_pool.append(self.create_item(item, ItemClassification.useful))
+            if item == "100 Mana Orbs" or item == "5 Diamonds":
+                item_pool.append(self.create_item(item, ItemClassification.useful))
             else:
                 item_pool.append(self.create_item(item, ItemClassification.progression)) # comment oiut the above code ofr now
-
+        unfilledlocations = len(self.multiworld.get_unfilled_locations(self.player))
+        numitemstoadd = unfilledlocations - len(item_pool)
+        for _ in range(numitemstoadd):
+            item = random.randint(1, 2)
+            if item == 1:
+                item_pool.append(self.create_item("100 Mana Orbs", ItemClassification.useful))
+            elif item == 2:
+                item_pool.append(self.create_item("5 Diamonds", ItemClassification.useful))
         self.multiworld.itempool += item_pool
 
     def create_regions(self):
@@ -80,6 +86,8 @@ class GDWorld(World):
             region.add_locations(location_table, GDLocation)
             if self.options.ultimate:
                 region.add_locations(ultimate_locations, GDLocation)
+            if self.options.coins:
+                region.add_locations(coins, GDLocation)
 
             self.multiworld.regions.append(region)
 
@@ -96,5 +104,6 @@ class GDWorld(World):
         "ultimate": self.options.ultimate.value,
         "death_link": self.options.death_link.value,
         "death_link_amnesty": self.options.death_link_amnesty.value,
-        "speed": self.options.speed.value
+        "speed": self.options.speed.value,
+        "coins": self.options.coins.value
             }

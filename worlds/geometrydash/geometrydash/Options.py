@@ -33,6 +33,10 @@ class Speed(Range):
     range_end = 250
     default = 100
 
+class Coins(Toggle):
+    """Create coins in the world generation (disabling will remove portal checks)"""
+    display_name = "Coins"
+    default = True
 # spinoff disabled as it depends on MoreGames by BitZ and the mod hasn't been ported to 2.206 yet. DO NOT ENABLE
 
 # class Spinoff(Toggle):
@@ -48,3 +52,4 @@ class GDOptions(PerGameCommonOptions):
     death_link: DeathLink
     death_link_amnesty: DeathAmount
     speed: Speed
+    coins: Coins

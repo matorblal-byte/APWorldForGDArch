@@ -5,6 +5,8 @@ class GDLocation(Location):
 
 gd_base_id = 130820130
 
+coins = {}
+
 location_table = {
     "Stereo Madness": 1 + gd_base_id,
     "Back On Track": 2 + gd_base_id,
@@ -50,3 +52,9 @@ spinoff_locations = {
     "Power Trip": 35 + gd_base_id,
 
 }
+
+for key in location_table:
+    for i in range(3):
+        name = key + " - Coin " + str(i + 1)
+        value = (location_table[key] - gd_base_id) * 1000 + (i + 1) + gd_base_id
+        coins[name] = value
