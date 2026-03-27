@@ -63,20 +63,20 @@ class GDWorld(World):
         item_pool: List[GDItem] = []
         for item in item_table:
             if item in startinglevelslist:
-                item_pool.append(self.create_item("100 Mana Orbs", ItemClassification.useful)) # filler for rn
+                item_pool.append(self.create_item("100 Mana Orbs", ItemClassification.filler)) # filler for rn
                 continue
             if item == "100 Mana Orbs" or item == "5 Diamonds":
-                item_pool.append(self.create_item(item, ItemClassification.useful))
+                item_pool.append(self.create_item(item, ItemClassification.filler))
             else:
-                item_pool.append(self.create_item(item, ItemClassification.progression)) # comment oiut the above code ofr now
+                item_pool.append(self.create_item(item, ItemClassification.progression))
         unfilledlocations = len(self.multiworld.get_unfilled_locations(self.player))
         numitemstoadd = unfilledlocations - len(item_pool)
         for _ in range(numitemstoadd):
             item = random.randint(1, 2)
             if item == 1:
-                item_pool.append(self.create_item("100 Mana Orbs", ItemClassification.useful))
+                item_pool.append(self.create_item("100 Mana Orbs", ItemClassification.filler))
             elif item == 2:
-                item_pool.append(self.create_item("5 Diamonds", ItemClassification.useful))
+                item_pool.append(self.create_item("5 Diamonds", ItemClassification.filler))
         self.multiworld.itempool += item_pool
 
     def create_regions(self):
