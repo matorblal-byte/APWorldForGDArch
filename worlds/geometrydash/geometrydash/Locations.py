@@ -63,6 +63,7 @@ possible_starting_levels = {
     "Jumper": 7 + gd_base_id,
     "Time Machine": 8 + gd_base_id,
 }
+
 for key in location_table:
     for i in range(3):
         name = key + " - Coin " + str(i + 1)

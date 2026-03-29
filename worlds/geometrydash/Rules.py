@@ -33,8 +33,13 @@ def set_rules(world: "GDWorld"):
         set_rule(world.get_location("Deadlocked"), lambda state: state.has_all(("Ball Portal", "UFO Portal", "Wave Portal", "Robot Portal"), world.player))
         set_rule(world.get_location("Fingerdash"), lambda state: state.has_all(("UFO Portal", "Wave Portal", "Robot Portal", "Spider Portal"), world.player))
         set_rule(world.get_location("Dash"), lambda state: state.has_all(("Ball Portal", "Wave Portal", "Robot Portal", "Spider Portal", "Swing Portal"), world.player))
-        set_rule(world.get_location("The Cellar"), lambda state: state.has("Robot Portal", world.player))
-        set_rule(world.get_location("The Secret Hollow"), lambda state: state.has("Ball Portal", world.player)) # Reason why robot isnt included is because you spawn as it it isnt a portal
+        set_rule(world.get_location("The Sewers"), lambda state: state.has("The Tower: Unlock", world.player))
+        set_rule(world.get_location("The Cellar"), lambda state: state.has_all(("Robot Portal", "The Sewers: Unlock"), world.player))
+        set_rule(world.get_location("The Secret Hollow"), lambda state: state.has_all(("Ball Portal", "The Cellar: Unlock"), world.player)) # Reason why robot isnt included is because you spawn as it it isnt a portal
+#    else:
+#        set_rule(world.get_location("The Sewers"), lambda state: state.has("The Tower: Unlock", world.player))
+#        set_rule(world.get_location("The Cellar"), lambda state: state.has("The Sewers: Unlock", world.player))
+#        set_rule(world.get_location("The Secret Hollow"), lambda state: state.has("The Cellar: Unlock", world.player))
     for location in location_table:
         for item in item_table:
             level = item.removesuffix(": Unlock")

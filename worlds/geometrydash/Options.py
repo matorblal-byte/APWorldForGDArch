@@ -5,7 +5,7 @@ from Options import Option, DeathLink, Range, Toggle, PerGameCommonOptions
 class StartingLevels(Range):
     """Amount of levels unlocked by default."""
     display_name = "Starting Levels"
-    range_start = 0
+    range_start = 1
     range_end = 5
     default = 3
 

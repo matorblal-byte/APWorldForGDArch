@@ -3,8 +3,8 @@ import json
 from typing import List
 
 from .Options import GDOptions
-from .Items import item_table, GDItem
-from .Locations import location_table, ultimate_locations, GDLocation, coins
+from .Items import item_table, GDItem, portals
+from .Locations import location_table, ultimate_locations, GDLocation, coins, possible_starting_levels
 from .Regions import region_data_table
 from .Rules import set_rules
 from BaseClasses import Tutorial, ItemClassification, Region
@@ -36,6 +36,8 @@ class GDWorld(World):
     gd_base_id = 130820130
 
     def create_item(self, name: str, classification: ItemClassification) -> GDItem:
+        if self.options.coins.value:
+            item_table.update(portals)
         return GDItem(name, classification, item_table[name], self.player)
     
     def create_items(self):
@@ -43,24 +45,24 @@ class GDWorld(World):
         startinglevels = ""
         startinglevelslist = []
         key = ""
-        all_levels = list(location_table.items())
-        if self.options.ultimate.value == True:
-            all_levels += list(ultimate_locations.items())
+        all_levels = list(possible_starting_levels.items())
         for _ in range(self.options.start_levels.value):
             levelNum = random.randint(0, len(all_levels) - 1)
             startinglevels += str(levelNum) + " "
             for key, value in item_table.items():
                 if value == levelNum + self.gd_base_id:
                     level = key
-                while key in startinglevelslist:
-                    levelNum = random.randint(0, len(all_levels) - 1)
-                    startinglevels += str(levelNum) + " "
-                    for key, value in item_table.items():
-                        if value == levelNum + self.gd_base_id:
-                            level = key
+                    while level in startinglevelslist:
+                        levelNum = random.randint(0, len(all_levels) - 1)
+                        startinglevels += str(levelNum) + " "
+                        for key, value in item_table.items():
+                            if value == levelNum + self.gd_base_id:
+                                level = key
             startinglevelslist.append(level)
             print(startinglevels)
         item_pool: List[GDItem] = []
+        if self.options.coins.value:
+            item_table.update(portals)
         for item in item_table:
             if item in startinglevelslist:
                 item_pool.append(self.create_item("100 Mana Orbs", ItemClassification.filler)) # filler for rn

@@ -32,12 +32,15 @@ item_table = {
     "The Sewers: Unlock": 23 + gd_base_id,
     "The Cellar: Unlock": 24 + gd_base_id,
     "The Secret Hollow: Unlock": 25 + gd_base_id,
+    "100 Mana Orbs": 32 + gd_base_id,
+    "5 Diamonds": 33 + gd_base_id,
+}
+
+portals = { # seperated cuz of coins
     "Ball Portal": 26 + gd_base_id,
     "UFO Portal": 27 + gd_base_id,
     "Wave Portal": 28 + gd_base_id,
     "Robot Portal": 29 + gd_base_id,
     "Spider Portal": 30 + gd_base_id,
     "Swing Portal": 31 + gd_base_id, 
-    "100 Mana Orbs": 32 + gd_base_id,
-    "5 Diamonds": 33 + gd_base_id,
 }
