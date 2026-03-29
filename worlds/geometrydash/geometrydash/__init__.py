@@ -4,7 +4,7 @@ from typing import List
 
 from .Options import GDOptions
 from .Items import item_table, GDItem
-from .Locations import location_table, ultimate_locations, GDLocation, coins
+from .Locations import location_table, ultimate_locations, GDLocation, coins, possible_starting_levels
 from .Regions import region_data_table
 from .Rules import set_rules
 from BaseClasses import Tutorial, ItemClassification, Region
@@ -43,9 +43,7 @@ class GDWorld(World):
         startinglevels = ""
         startinglevelslist = []
         key = ""
-        all_levels = list(location_table.items())
-        if self.options.ultimate.value == True:
-            all_levels += list(ultimate_locations.items())
+        all_levels = list(possible_starting_levels.items())
         for _ in range(self.options.start_levels.value):
             levelNum = random.randint(0, len(all_levels) - 1)
             startinglevels += str(levelNum) + " "

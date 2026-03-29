@@ -53,6 +53,16 @@ spinoff_locations = {
 
 }
 
+possible_starting_levels = {
+    "Stereo Madness": 1 + gd_base_id,
+    "Back On Track": 2 + gd_base_id,
+    "Polargeist": 3 + gd_base_id,
+    "Dry Out": 4 + gd_base_id,
+    "Base After Base": 5 + gd_base_id,
+    "Cant Let Go": 6 + gd_base_id,
+    "Jumper": 7 + gd_base_id,
+    "Time Machine": 8 + gd_base_id,
+}
 for key in location_table:
     for i in range(3):
         name = key + " - Coin " + str(i + 1)
