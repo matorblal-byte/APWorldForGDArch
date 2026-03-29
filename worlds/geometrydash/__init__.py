@@ -100,12 +100,26 @@ class GDWorld(World):
         set_rules(self)
 
     def fill_slot_data(self):
+       # gotta do all this because apcpp dont got bools it seems
+       if self.options.coins.value:
+           coinsVal = 1
+       else:
+           coinsVal = 0
+       if self.options.ultimate.value:
+           ultimateVal = 1 
+       else:            
+           ultimateVal = 0
+       if self.options.coin_locks.value:
+           coinLocksVal = 1
+       else:
+           coinLocksVal = 0
        return {
         "startinglevels": startinglevels,
         "start_levels": self.options.start_levels.value,
-        "ultimate": self.options.ultimate.value,
+        "ultimate": ultimateVal,
         "death_link": self.options.death_link.value,
         "death_link_amnesty": self.options.death_link_amnesty.value,
         "speed": self.options.speed.value,
-        "coins": self.options.coins.value
+        "coins": coinsVal,
+        "coin_locks": coinLocksVal
             }

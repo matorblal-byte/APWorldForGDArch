@@ -49,6 +49,7 @@ class GDOptions(PerGameCommonOptions):
     start_levels: StartingLevels
     ultimate: Ultimate
     # spinoff: Spinoff
+    coin_locks: CoinLocks
     death_link: DeathLink
     death_link_amnesty: DeathAmount
     speed: Speed
