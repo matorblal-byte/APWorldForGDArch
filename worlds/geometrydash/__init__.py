@@ -4,7 +4,7 @@ from typing import List
 
 from .Options import GDOptions
 from .Items import item_table, GDItem, portals
-from .Locations import location_table, ultimate_locations, GDLocation, coins, possible_starting_levels
+from .Locations import location_table, ultimate_locations, GDLocation, coins, possible_starting_levels, check_shop_locations
 from .Regions import region_data_table
 from .Rules import set_rules
 from BaseClasses import Tutorial, ItemClassification, Region
@@ -86,10 +86,12 @@ class GDWorld(World):
         for region_name in region_data_table.keys():
             region = Region(region_name, self.player, self.multiworld)
             region.add_locations(location_table, GDLocation)
-            if self.options.ultimate:
+            if self.options.ultimate.value:
                 region.add_locations(ultimate_locations, GDLocation)
-            if self.options.coins:
+            if self.options.coins.value:
                 region.add_locations(coins, GDLocation)
+            if self.options.check_shop.value:
+                region.add_locations(check_shop_locations, GDLocation)
 
             self.multiworld.regions.append(region)
 
@@ -113,6 +115,10 @@ class GDWorld(World):
            coinLocksVal = 1
        else:
            coinLocksVal = 0
+       if self.options.check_shop.value:
+           checkShopVal = 1
+       else:
+           checkShopVal = 0
        return {
         "startinglevels": startinglevels,
         "start_levels": self.options.start_levels.value,
@@ -121,5 +127,6 @@ class GDWorld(World):
         "death_link_amnesty": self.options.death_link_amnesty.value,
         "speed": self.options.speed.value,
         "coins": coinsVal,
-        "coin_locks": coinLocksVal
+        "coin_locks": coinLocksVal,
+        "check_shop": checkShopVal
             }

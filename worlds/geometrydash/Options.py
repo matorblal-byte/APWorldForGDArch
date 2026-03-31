@@ -37,7 +37,11 @@ class Coins(Toggle):
     """Create coins in the world generation (disabling will remove portal checks)"""
     display_name = "Coins"
     default = True
-# spinoff disabled as it depends on MoreGames by BitZ and the mod hasn't been ported to 2.206 yet. DO NOT ENABLE
+
+class CheckShop(Toggle):
+    """Enables Check Shop locations, lets you buy items"""
+    display_name = "Check Shop"
+    default = True
 
 # class Spinoff(Toggle):
     # """Enables Meltdown and Subzero levels as checks. You must have MoreGames by BitZ installed!"""
@@ -54,3 +58,4 @@ class GDOptions(PerGameCommonOptions):
     death_link_amnesty: DeathAmount
     speed: Speed
     coins: Coins
+    check_shop: CheckShop
