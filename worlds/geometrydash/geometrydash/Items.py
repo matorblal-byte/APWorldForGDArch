@@ -22,7 +22,7 @@ item_table = {
     "Clubstep: Unlock": 13 + gd_base_id,
     "Electrodynamix: Unlock": 14 + gd_base_id,
     "Hexagon Force: Unlock": 15 + gd_base_id,
-    "Blast Processing: Unlsck": 16 + gd_base_id,
+    "Blast Processing: Unlock": 16 + gd_base_id,
     "Theory of Everything 2: Unlock": 17 + gd_base_id,
     "Geometrical Dominator: Unlock": 18 + gd_base_id,
     "Deadlocked: Unlock": 19 + gd_base_id,
