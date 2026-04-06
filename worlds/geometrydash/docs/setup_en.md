@@ -54,7 +54,6 @@ Due to the nature of ArchipelagoGD, some mods may be incompatible with it. Altho
 - BetterProgression by ItzKiba
 - Main Level Pages by Capeling
 - Backups by HJfod
-- Overcharged Main Menu by Weebify
 - Globed by dank_meme (can probably work, but can break some things and can be used to completely break progression)
 
 
