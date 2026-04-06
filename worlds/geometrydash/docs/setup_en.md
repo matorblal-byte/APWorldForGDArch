@@ -59,3 +59,4 @@ Due to the nature of ArchipelagoGD, some mods may be incompatible with it. Altho
 
 Mods that are **fully incompatible** have been configured to not load along with ArchipelagoGD.
 
+GitHub: The .apworld is literally just a zip lol
