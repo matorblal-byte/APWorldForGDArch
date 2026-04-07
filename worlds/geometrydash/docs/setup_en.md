@@ -11,6 +11,7 @@
 - [Geode for Windows](https://geode-sdk.org/install/)
 - Visual C++ Runtime (can be installed through the Geode installer)
 - [ArchipelagoGD](https://github.com/matorblal-byte/ArchipelagoGD2) (read the instructions before downloading!)
+- [Geometry Dash APWorld](https://github.com/matorblal-byte/ArchipelagoGD2/releases/latest)
 
 ## Instructions
 
@@ -25,7 +26,7 @@
 
 3. Install the mod. There are 2 ways to do this:
     - (Recommended) Search for **ArchipelagoGD** in the Geode Index and download it.
-    - If the mod isn't available on the index, download the mod from the [GitHub releases](https://github.com/matorblal-byte/ArchipelagoGD/releases/latest) (you need `1257plays.archipelagogd.geode`) and copy it to `geode/mods` in your game files.
+    - If the mod isn't available on the index, download the mod from the [GitHub releases](https://github.com/matorblal-byte/ArchipelagoGD2/releases/latest) (you need `1257plays.archipelagogd.geode`) and copy it to `geode/mods` in your game files.
 
 4. Restart your game. If you see the Archipelago button on the top right corner of your main menu, you're good to go!
 
