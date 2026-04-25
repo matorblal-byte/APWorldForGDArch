@@ -1,4 +1,3 @@
-import typing
 from dataclasses import dataclass
 from Options import Option, DeathLink, Range, Toggle, PerGameCommonOptions
 
@@ -16,10 +15,10 @@ class DeathAmount(Range):
     range_end = 30
     default = 10
 
-class Ultimate(Toggle):
-    """Enables Ultimate Clubstep, Theory of Everything 2 and Deadlocked as locations."""
-    display_name = "Ultimate Achievements"
-    default = False
+# class Ultimate(Toggle):
+#     """Enables Ultimate Clubstep, Theory of Everything 2 and Deadlocked as locations."""
+#     display_name = "Ultimate Achievements"
+#     default = False
 
 class CoinLocks(Toggle):
     """Enables the vanilla coin locks for Clubstep, Theory of Everything 2 and Deadlocked."""
@@ -51,7 +50,7 @@ class CheckShop(Toggle):
 @dataclass
 class GDOptions(PerGameCommonOptions):
     start_levels: StartingLevels
-    ultimate: Ultimate
+    # ultimate: Ultimate
     # spinoff: Spinoff
     coin_locks: CoinLocks
     death_link: DeathLink
