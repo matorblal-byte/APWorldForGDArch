@@ -1,5 +1,6 @@
 from typing import Dict, List, NamedTuple
-
+from BaseClasses import Region
+from .Locations import location_table, ultimate_locations, GDLocation, coins, possible_starting_levels, check_shop_locations
 class GDRegionData(NamedTuple):
     connecting_regions: List[str] = []
 

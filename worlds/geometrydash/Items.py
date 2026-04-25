@@ -1,7 +1,7 @@
 from BaseClasses import Item
 
 class GDItem(Item):
-    game: str = "Geometry Dash"
+    game = "Geometry Dash"
 
 gd_base_id = 130820130
 
@@ -44,3 +44,4 @@ portals = { # seperated cuz of coins
     "Spider Portal": 30 + gd_base_id,
     "Swing Portal": 31 + gd_base_id, 
 }
+
