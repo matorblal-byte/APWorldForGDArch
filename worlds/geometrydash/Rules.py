@@ -3,7 +3,7 @@ from BaseClasses import CollectionState
 from .Items import item_table
 from .Locations import location_table, ultimate_locations, GDLocation, coins
 from worlds.generic.Rules import set_rule, add_rule
-from rlue_builder.rules import Rule, Has, HasAll
+from rule_builder.rules import Rule, Has, HasAll
 from .Options import GDOptions
 if TYPE_CHECKING:
     from . import GDWorld
