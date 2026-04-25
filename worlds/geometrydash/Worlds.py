@@ -7,7 +7,7 @@ from .Options import GDOptions
 from .Items import GDItem
 from .Regions import region_data_table, GDRegionData
 from typing import List
-import random
+
 class GDWorld(World):
     """Jump and fly your way through danger in this rhythm-based action platformer!"""
     #taken from steam
@@ -26,6 +26,7 @@ class GDWorld(World):
         global startinglevels
         startinglevels = ""
         key = ""
+        random = self.random
         all_levels = list(possible_starting_levels.items())
         for _ in range(self.options.start_levels.value):
             levelNum = random.randint(0, len(all_levels) - 1)
@@ -61,7 +62,7 @@ class GDWorld(World):
         unfilledlocations = len(self.multiworld.get_unfilled_locations(self.player))
         numitemstoadd = unfilledlocations - len(item_pool)
         for _ in range(numitemstoadd):
-            item = random.randint(1, 2)
+            item = self.random.randint(1, 2)
             if item == 1:
                 item_pool.append(self.create_item("100 Mana Orbs", ItemClassification.filler))
             elif item == 2:
