@@ -1,4 +1,6 @@
-from BaseClasses import Tutorial, ItemClassification, Region
+from BaseClasses import Tutorial, ItemClassification, Region, Entrance
+from rule_builder import options
+from rule_builder.rules import Has
 from worlds.AutoWorld import World, WebWorld
 from .Items import item_table, GDItem, portals
 from .Locations import location_table, ultimate_locations, GDLocation, coins, possible_starting_levels, check_shop_locations
@@ -17,11 +19,26 @@ class GDWorld(World):
     options = GDOptions
     topology_present = False
     web = GDWebWorld()
-
-    item_name_to_id = item_table
-    location_name_to_id = location_table
+    itemstoid = item_table | portals
+    item_name_to_id = itemstoid
+    locationstoid = location_table | ultimate_locations | coins | check_shop_locations
+    location_name_to_id = locationstoid
     gd_base_id = 130820130
     startinglevelslist = []
+    def generate_early(self): # change the id thingies
+        itemstoid = item_table.copy()
+        if self.options.coins.value:
+            itemstoid.update(portals)
+        self.item_name_to_id = itemstoid
+        locationstoid = location_table.copy()
+        #if self.options.ultimate.value:
+         #   locationstoid.update(ultimate_locations)
+        if self.options.coins.value:
+            locationstoid.update(coins)
+        if self.options.check_shop.value:
+            locationstoid.update(check_shop_locations)
+        self.location_name_to_id = locationstoid
+        return super().generate_early()
     def generate_starting_levels(self):
         global startinglevels
         startinglevels = ""
@@ -73,16 +90,24 @@ class GDWorld(World):
         # shoutouts to clique once again
         for region_name in region_data_table.keys():
             region = Region(region_name, self.player, self.multiworld)
-            region.add_locations(location_table, GDLocation)
+            for level in location_table:
+                level_region = Region(level, self.player, self.multiworld)
+                entrance = Entrance(self.player, "Menu to " + level, parent=region)
+                region.exits.append(entrance)
+                entrance.connect(level_region)
+                if self.options.coins.value:
+                    for i in range(3):
+                        level_region.add_locations({level + " - Coin " + str(i + 1): coins[level + " - Coin " + str(i + 1)]}, GDLocation)
+                self.multiworld.regions.append(level_region)
             #if self.options.ultimate.value:
-            #   region.add_locations(ultimate_locations, GDLocation)
-            if self.options.coins.value:
-                region.add_locations(coins, GDLocation)
+             #  region.add_locations(ultimate_locations, GDLocation)
+            region.add_locations(location_table, GDLocation)
+           # if self.options.coins.value:
+            #    region.add_locations(coins, GDLocation)
             if self.options.check_shop.value:
                 region.add_locations(check_shop_locations, GDLocation)
 
             self.multiworld.regions.append(region)
-
     def fill_slot_data(self):
         # gotta do all this because apcpp dont got bools it seems
         if self.options.coins.value:
