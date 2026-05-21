@@ -127,6 +127,20 @@ class GDWorld(World):
         else:
             checkShopVal = 0
         self.generate_starting_levels()
+        if self.options.check_shop.value:
+            si1 =  self.multiworld.get_location("Check Shop #1", self.player).item.name
+            si2 =  self.multiworld.get_location("Check Shop #2", self.player).item.name
+            si3 =  self.multiworld.get_location("Check Shop #3", self.player).item.name
+            si4 =  self.multiworld.get_location("Check Shop #4", self.player).item.name
+            si5 =  self.multiworld.get_location("Check Shop #5", self.player).item.name
+            si6 =  self.multiworld.get_location("Check Shop #6", self.player).item.name
+        else:
+            si1 = "None"
+            si2 = "None"
+            si3 = "None"
+            si4 = "None"
+            si5 = "None"
+            si6 = "None"
         return {
             "startinglevels": startinglevels,
             "start_levels": self.options.start_levels.value,
@@ -136,5 +150,11 @@ class GDWorld(World):
             "speed": self.options.speed.value,
             "coins": coinsVal,
             "coin_locks": coinLocksVal,
-            "check_shop": checkShopVal
+            "check_shop": checkShopVal,
+            "shop_item1": si1,
+            "shop_item2": si2,
+            "shop_item3": si3,
+            "shop_item4": si4,
+            "shop_item5": si5,
+            "shop_item6": si6
                 }
