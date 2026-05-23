@@ -1,6 +1,6 @@
 from BaseClasses import Tutorial, ItemClassification, Region, Entrance
 from rule_builder import options
-from rule_builder.rules import Has
+from rule_builder.rules import Has, HasAll
 from worlds.AutoWorld import World, WebWorld
 from .Items import item_table, GDItem, portals
 from .Locations import location_table, ultimate_locations, GDLocation, coins, possible_starting_levels, check_shop_locations
@@ -57,6 +57,7 @@ class GDWorld(World):
                         for key, value in item_table.items():
                             if value == levelNum + self.gd_base_id:
                                 level = key
+            level.removesuffix(": Unlock")
             self.startinglevelslist.append(level)
             print(startinglevels)
     def create_item(self, name: str, classification: ItemClassification) -> GDItem:
@@ -87,21 +88,42 @@ class GDWorld(World):
         self.multiworld.itempool += item_pool
         
     def create_regions(self):
+        self.generate_starting_levels()
         # shoutouts to clique once again
         for region_name in region_data_table.keys():
             region = Region(region_name, self.player, self.multiworld)
             for level in location_table:
                 level_region = Region(level, self.player, self.multiworld)
-                entrance = Entrance(self.player, "Menu to " + level, parent=region)
-                region.exits.append(entrance)
-                entrance.connect(level_region)
+                if level in self.startinglevelslist:
+                    self.create_entrance(region, level_region)
+                else:
+                    if level.startswith(("Cycles", "xStep", "Clutterfunk")):
+                        self.create_entrance(region, level_region, HasAll("Ball Portal", level + ": Unlock"))
+                    elif level.startswith(("Theory of Everything", "Electroman Adventures", "Clubstep", "Electrodynamix", "Hexagon Force")):
+                       self.create_entrance(region, level_region, HasAll("Ball Portal", "UFO Portal", level + ": Unlock"))
+                    elif level.startswith(("Blast Processing", "Theory of Everything 2")):
+                        self.create_entrance(region, level_region, HasAll("Ball Portal", "UFO Portal", "Wave Portal", level + ": Unlock"))
+                    elif level.startswith(("Geometrical Dominator", "Deadlocked")):
+                        self.create_entrance(region, level_region, HasAll("Ball Portal", "UFO Portal", "Wave Portal", "Robot Portal", level + ": Unlock"))
+                    elif level.startswith("Fingerdash"):
+                        self.create_entrance(region, level_region, HasAll("UFO Portal", "Wave Portal", "Robot Portal", "Spider Portal", level + ": Unlock"))
+                    elif level.startswith("Dash"):
+                        self.create_entrance(region, level_region, HasAll("Ball Portal", "Wave Portal", "Robot Portal", "Spider Portal", "Swing Portal", level + ": Unlock"))
+                    elif level.startswith("The Sewers"):
+                       self.create_entrance(region, level_region, HasAll("The Tower: Unlock", level + ": Unlock"))
+                    elif level.startswith("The Cellar"):
+                       self.create_entrance(region, level_region, HasAll("Robot Portal", "The Sewers: Unlock", level + ": Unlock"))
+                    elif level.startswith("The Secret Hollow"):
+                        self.create_entrance(region, level_region, HasAll("Ball Portal", "The Cellar: Unlock", level + ": Unlock"))
+                    else:
+                        self.create_entrance(region, level_region)  # i cant assign has(level + ": Unlock")? idk why
+                region.add_locations({level: location_table[level]}, GDLocation)
                 if self.options.coins.value:
                     for i in range(3):
                         level_region.add_locations({level + " - Coin " + str(i + 1): coins[level + " - Coin " + str(i + 1)]}, GDLocation)
                 self.multiworld.regions.append(level_region)
             #if self.options.ultimate.value:
              #  region.add_locations(ultimate_locations, GDLocation)
-            region.add_locations(location_table, GDLocation)
            # if self.options.coins.value:
             #    region.add_locations(coins, GDLocation)
             if self.options.check_shop.value:
@@ -126,7 +148,6 @@ class GDWorld(World):
             checkShopVal = 1
         else:
             checkShopVal = 0
-        self.generate_starting_levels()
         if self.options.check_shop.value:
             si1 =  self.multiworld.get_location("Check Shop #1", self.player).item.name
             si2 =  self.multiworld.get_location("Check Shop #2", self.player).item.name
