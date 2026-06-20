@@ -6,6 +6,7 @@ from .Locations import location_table, ultimate_locations, GDLocation, coins, po
 from .WebWorld import GDWebWorld
 from .Options import GDOptions
 from .Items import GDItem
+from .Rules import set_all_rules
 from typing import List
 
 class GDWorld(World):
@@ -84,7 +85,9 @@ class GDWorld(World):
             elif item == 2:
                 item_pool.append(self.create_item("5 Diamonds", ItemClassification.filler))
         self.multiworld.itempool += item_pool
-        
+    def set_rules(self):
+        set_all_rules(self, self.startinglevelslist)
+
     def create_regions(self):
         self.generate_starting_levels()
         region = Region("Menu", self.player, self.multiworld)

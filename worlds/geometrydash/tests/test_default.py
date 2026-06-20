@@ -35,25 +35,29 @@ class TestDefault(GDTestBase):
         itemstocheck = []
         startingLevels = self.world.startinglevelslist
         for i in startingLevels:
-            level = self.levels[i]
-            item = self.world.get_location(level).item
-            for j in coins.keys():
-                if j.startswith(level):
-                    coinitem = self.world.get_location(j).item
-                    self.collect(coinitem)
-                    if coinitem.name.endswith(": Unlock"):
-                        itemstocheck.append(coinitem.name)
-            if item.name.endswith(": Unlock"):
-                itemstocheck.append(item.name.split(": Unlock")[0])
-            self.assertIsNotNone(item)
-            self.assertIsNotNone(coinitem)
-            self.collect(item)
+            if not "Unlock" in i:
+                level = i
+                global item, coinitem
+                item = self.multiworld.get_location(level, self.player).item
+                self.assertIsNotNone(item)
+                for j in coins.keys():
+                    if j.startswith(level):
+                        coinitem = self.multiworld.get_location(j, self.player).item
+                        self.assertIsNotNone(coinitem)
+                        self.collect(coinitem)
+                        if coinitem.name.endswith(": Unlock"):
+                            itemstocheck.append(coinitem.name)
+                if item.name.endswith(": Unlock"):
+                    itemstocheck.append(item.name.split(": Unlock")[0])
+                self.assertIsNotNone(item)
+                self.assertIsNotNone(coinitem)
+                self.collect(item)
         for item in itemstocheck:
             if item.startswith(level):
                 self.assertTrue(self.can_reach(item))
                 for j in coins.keys():
                     if j.startswith(level):
-                        coinitem = self.world.get_location(j).item
+                        coinitem = self.multiworld.get_location(j, self.player).item
                         self.collect(coinitem)
                         if coinitem.name.endswith(": Unlock"):
                             itemstocheck.append(coinitem.name)
